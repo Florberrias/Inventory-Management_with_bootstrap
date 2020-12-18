@@ -64,7 +64,7 @@ fieldset {
 	<div th:replace="fragments/general.html :: footer"></div>
 	<a href="AddUser.html" class="btn btn-success" th:href="@{/supplier/list}">Supplier Page</a>
 	<br/>
-	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
-	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+	<span th:if="${session.session == 'admin'}"><a href="Home" class="btn btn-primary" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" class="btn btn-primary" th:href="@{/user/home/mechanic}">Home</a></span>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <title>Stock Entry Form</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" media="all" type="text/css" th:href="@{/css/style.css}" />
+<link rel="stylesheet" media="all" type="text/css" th:href="@{/css/stylesheet.css}" />
 </head>
 <body>
 	<header th:insert="fragments/general.html :: header"> </header>
@@ -62,14 +62,14 @@
         			<td style="padding-left:20px"><p class="errors" th:if="${#fields.hasErrors('damagedDescription')}" th:errors="*{damagedDescription}"></p></td>
         		</tr>
     		</table>
-    		<input type="submit" value="Save" name="saveSEForm">
-			<input type="submit" value="Add to inventory" name="addToInventory">
+    		<input type="submit" class="btn btn-success" value="Save" name="saveSEForm">
+			<input type="submit" class="btn btn-info" value="Add to inventory" name="addToInventory">
   		</div>
   	</div>
   	</form>
   	<p><a th:href="@{/reorders/list}" class="btn btn-default">Back to Reorders</a></p>
 	<div th:replace="fragments/general.html :: footer"></div>
-	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
-	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+	<span th:if="${session.session == 'admin'}"><a href="Home" class="btn btn-primary" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" class="btn btn-primary" th:href="@{/user/home/mechanic}">Home</a></span>
 </body>
 </html>

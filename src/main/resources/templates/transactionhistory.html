@@ -75,7 +75,7 @@
 <p>
 <a  href="Home" class="btn btn-primary" th:href="@{/catalog/list}">Back to Catalog</a></p>
 <br/>
-<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
-<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+<span th:if="${session.session == 'admin'}"><a href="Home" class="btn btn-primary" th:href="@{/user/home/admin}">Home</a></span>
+<span th:if="${session.session == 'mechanic'}"><a href="Home" class="btn btn-primary" th:href="@{/user/home/mechanic}">Home</a></span>
 </body>
 </html>

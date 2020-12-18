@@ -10,3 +10,13 @@
 .column2 {
   float: left;
 }
+
+h1 {
+	margin: 1em 0 0.5em 0;
+	font-weight: 600;
+	font-family: 'Titillium Web', sans-serif;
+	position: relative;  
+	font-size: 21px;
+	line-height: 60px;
+	color: #355681;
+}

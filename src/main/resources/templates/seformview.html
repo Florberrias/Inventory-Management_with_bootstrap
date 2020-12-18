@@ -5,7 +5,7 @@
 <title>Stock Entry Form</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" media="all" type="text/css" th:href="@{/css/style.css}" />
+<link rel="stylesheet" media="all" type="text/css" th:href="@{/css/stylesheet.css}" />
 </head>
 <body>
 	<header th:insert="fragments/general.html :: header"> </header>
@@ -19,7 +19,7 @@
 		</table>
 	<div class="row" th:object="${reorder}">
   		<div class="column1">
-    		<table>
+    		<table class="table table-striped">
       			<tr>
 					<th>Product Name</th>
 					<td th:text="*{product.name}" style="padding-left:50px"></td>
@@ -64,7 +64,7 @@
 	</div>
 	<p><a th:href="@{/reorders/list}" class="btn btn-default">Back to Reorders</a></p>
 	<div th:replace="fragments/general.html :: footer"></div>
-	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
-	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+	<span th:if="${session.session == 'admin'}"><a href="Home" class="btn btn-primary" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" class="btn btn-primary" th:href="@{/user/home/mechanic}">Home</a></span>
 </body>
 </html>

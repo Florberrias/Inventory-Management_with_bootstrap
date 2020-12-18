@@ -40,7 +40,7 @@
 <a href="Transaction" th:href="@{/catalog/transactionhistory/{id}(id=${product.productId})}">Transaction History</a>
 <a href="Home" class="btn btn-info" th:href="@{/catalog/list}">Back to Catalog</a>
 <br/>
-<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
-<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+<span th:if="${session.session == 'admin'}"><a href="Home" class="btn btn-primary" th:href="@{/user/home/admin}">Home</a></span>
+<span th:if="${session.session == 'mechanic'}"><a href="Home" class="btn btn-primary" th:href="@{/user/home/mechanic}">Home</a></span>
 </body>
 </html>
