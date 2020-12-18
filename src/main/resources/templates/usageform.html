@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<title>Usage Form</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" media="all" type="text/css" th:href="@{/css/style.css}" />
+<style>
+fieldset {
+  background-color: #eeeeee;
+}
+
+</style>
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+		<table width="100%" class="center">
+			<tr align="center">
+				<td width="30%"></td>
+				<td align="center" width="40%"><h1>Usage Form</h1></td>
+				<td  width="30%"></td>
+			</tr>
+		</table>
+	<form action="#" th:object="${consumption}" th:action="@{/usage/save}"
+		method="post">
+		<fieldset>
+		<p th:text="${duplicate}"></p>
+			<input type="hidden" th:field="*{id}">
+		</fieldset>
+		
+
+		<fieldset>
+			Select Car
+	 	<select th:field="*{transaction.car}">
+    <option th:each="c : ${cars}" th:value="${c}" th:text="${c.brand}" ></option>
+    </select>
+		</fieldset>
+			
+     
+		<fieldset>
+			Date <input type="date" th:field="*{transaction.date}">
+			<p th:if="${#fields.hasErrors('transaction.date')}" th:errors="*{transaction.date}"></p>
+		</fieldset>
+		
+			<fieldset>
+			Select Part Number
+	 	<select th:field="*{product}">
+    <option th:each="p : ${products}" th:value="${p}" th:text="${p.name}" ></option>
+    </select>
+		</fieldset>
+		
+		
+		<fieldset>
+			Consumed Qty <input type="number" th:field="*{consumedQty}">
+			<p th:if="${#fields.hasErrors('consumedQty')}" th:errors="*{consumedQty}"></p>
+		</fieldset>
+		
+			<fieldset>
+			Select Part Number
+	 	<select th:field="*{product}">
+    <option th:each="p : ${products}" th:value="${p}" th:text="${p.name}" ></option>
+    </select>
+    
+		</fieldset>
+		
+		
+		<fieldset>
+			Consumed Qty <input type="number" th:field="*{consumedQty}">
+			<p th:if="${#fields.hasErrors('consumedQty')}" th:errors="*{consumedQty}"></p>
+		</fieldset>
+		
+		<fieldset>
+			<input type="submit" value="Save" /> &nbsp; &nbsp; <input type="reset" value="Reset" />
+		</fieldset>
+
+	</form>
+	<br />
+	<div th:replace="fragments/general.html :: footer"></div>
+	<a href="AddUser.html" class="btn btn-success" th:href="@{/supplier/list}">Supplier Page</a>
+	<br/>
+	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+</body>
+</html>

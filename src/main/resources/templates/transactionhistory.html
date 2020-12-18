@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<title>Transaction History</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" media="all" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<label for="start">Start date:</label>
+
+
+<form th:action="@{/catalog/transactionhistory/{id}/filter(id=${id})}">
+    Start: <input type="date" id="start" name="start" th:value="${start}" th:max="${today}">
+    &nbsp;
+    End: <input type="date" id="end" name="end" th:value="${end}" th:max="${today}">
+    <input type="submit" class="btn btn-success" value="Search" onclick="return myFunction()" />
+    &nbsp;
+    <input type="button" class="btn btn-warning" value="Clear" id="btnClear" onclick="clearSearch()" />
+    
+    <input type="submit" class="btn btn-info" value="Generate Report" id="generate" th:formaction="@{/catalog/transactionhistory/{id}/filter/report(id=${id})}" onclick="return myFunction()"  />
+	</form>   
+	 
+
+	<script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/catalog/transactionhistory/{id}(id=${id})}]]";
+    }
+    
+    function myFunction() {
+    	  var x = document.getElementById("start").value;
+    	  var y= document.getElementById("end").value;
+    	  if (x > y)
+    	  { 
+          alert("End date must not be before start date");
+          return false;
+    	  }
+    	 return true;
+    	}
+	</script>
+		
+			
+<table class="table1 table-striped table-hover">
+		<thead>
+    	<tr >
+		<th>Id</th>
+		<th>Date</th>
+		<th>Car</th>
+		<th>Model</th>
+		<th>Customer Name</th>
+		<th>Consumed Qty</th>
+		</tr>
+		</thead>
+
+	<th:block th:each = "c : ${consumptions}">  
+       <tr> 
+       	 <td th:text = "${c.id}">Id</td>
+       	 <td th:text= "${c.transaction.date}">Date</td>
+         <td th:text="${c.transaction.car.brand}">CBrand</td>
+          <td th:text="${c.transaction.car.model}">CModel</td>
+          <td th:text="${c.transaction.car.ownerName}">CName</td>
+          <td th:text="${c.consumedQty}">consumed</td>
+             </tr>
+      </th:block>
+ 
+   </th:block>
+
+
+   </table>    
+        <h2 th:if="${#lists.isEmpty(consumptions)}">The transactions do not exist in selected daterange.</h2>
+
+
+<p>
+<a  href="Home" class="btn btn-primary" th:href="@{/catalog/list}">Back to Catalog</a></p>
+<br/>
+<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>ADMIN</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+	<h1>ADMIN PAGE</h1>
+	<div align="center">
+	<table>
+			<tr>
+				<td><input type="button" value="Manage Users"
+					onclick="window.location.href='/user/list'; return false"
+					class="button" /> <input type="button" value="Manage Suppliers"
+					onclick="window.location.href='/supplier/list'; return false"
+					class="button" /> <input type="button" value="Manage Products"
+					onclick="window.location.href='/product/list'; return false"
+					class="button" /><input type="button" value="Catalog"
+					onclick="window.location.href='/catalog/list'; return false"
+					class="button" /><input type="button" value="Record Usage"
+					onclick="window.location.href='/usage/add'; return false"
+					class="button" />
+					<input type="button" value="Reorder"
+					onclick="window.location.href='/reorders/list'; return false"
+					class="button" />
+					<input type="button" value="Logout"
+					onclick="window.location.href='/user/logout'; return false"
+					class="button" />
+					</td>
+			</tr>
+		</table>
+		<img alt="" th:src="@{/image/admin.png}" align="right" />
+	</div>
+	<div th:replace="fragments/general.html :: footer"></div>
+	
+</body>
+</html>

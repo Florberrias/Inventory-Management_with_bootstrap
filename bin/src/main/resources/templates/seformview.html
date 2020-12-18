@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- added stylesheet for table -->
+<link rel="stylesheet" type="text/css"
+	href="../../css/stylesheet.css" th:href="@{/css/stylesheet.css}" />
+
+<title>Stock Entry Form</title>
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"></header>
+	<div th:replace="fragments/general.html :: menu"></div>
+
+	<h1>Stock Entry Form</h1>
+	<div class="row" th:object="${reorder}">
+  		<div class="column1">
+    		<table>
+      			<tr>
+					<th>Product Name</th>
+					<td th:text="*{product.name}" style="padding-left:50px"></td>
+				</tr>
+				<tr>
+					<th>Unit Price</th>
+					<td th:text="*{product.originalPrice}" style="padding-left:50px"></td>
+				</tr>
+				<tr>
+					<th>Supplier</th>
+					<td th:text="*{product.supplier.companyName}" style="padding-left:50px"></td>
+				</tr>
+				<tr>
+					<th>MOQ</th>
+					<td th:text="*{product.MOQ}" style="padding-left:50px"></td>
+				</tr>
+				<tr>
+					<th>Order Quantity</th>
+					<td th:text="*{orderQty}" style="padding-left:50px"></td>
+				</tr>
+				<tr>
+					<th>Date Received</th>
+					<td th:text="*{dateReceived}" style="padding-left:50px"></td>
+				</tr>
+    		</table>
+  		</div>
+  		<div class="column2" style="padding-left:50px">
+    		<table>
+      			<tr>
+        			<th>Damaged Quantity</th>
+        			<td th:text="*{damagedQty}" style="padding-left:50px"></td>
+        		</tr>
+        		<tr>
+        			<th>Damage Description:</th>
+        		</tr>
+        		<tr>
+        			<td colspan="2" th:text="*{damagedDescription}"></td>
+        		</tr>
+    		</table>
+    		
+  		</div>
+	</div>
+	<p><a th:href="@{/reorders/list}">Back to Reorders</a></p>
+	<div th:replace="fragments/general.html :: footer"></div>
+	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+</body>
+</html>

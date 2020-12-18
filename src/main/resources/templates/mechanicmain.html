@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<title>Welcome Back!</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+	<div align="center">
+		<table class="center">
+			<tr>
+				<td align="center" colspan="3"><img class="center" alt=""
+					th:src="@{/image/mechanic.png}" width="100" height="100" />
+					<h1 align="center">Welcome Mechanic!</h1></td>
+			</tr>
+			<tr align="center">
+				<td><input type="button" value="Catalog"
+					onclick="window.location.href='/catalog/list'; return false"
+					class="btn btn-info btn-block" /></td>
+				<td><input type="button" value="Record Usage"
+					onclick="window.location.href='/usage/add'; return false"
+					class="btn btn-block" /></td>
+				<td><input type="button" value="Logout"
+				onclick="window.location.href='/user/logout'; return false"
+				class="btn btn-danger btn-block" /></td>
+			</tr>
+		</table>
+	</div>
+	<div th:replace="fragments/general.html :: footer"></div>
+</body>
+</html>

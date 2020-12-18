@@ -1,0 +1,12 @@
+.row {
+  margin-left: auto;
+  margin-right: auto;
+}
+  
+.column1 {
+  float: left;
+}
+
+.column2 {
+  float: left;
+}

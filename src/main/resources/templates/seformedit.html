@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<title>Stock Entry Form</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" media="all" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+		<table width="100%" class="center">
+			<tr align="center">
+				<td width="30%"></td>
+				<td align="center" width="40%"><h1>Stock Entry Form</h1></td>
+				<td  width="30%"></td>
+			</tr>
+		</table>
+	<form action="#" class="form" th:action="@{/reorders/processform/{id}(id = ${reorder.id})}" method="post">
+	<div class="row" th:object="${reorder}">
+  		<div class="column1">
+    		<table class="table table-striped">
+      			<tr>
+					<th>Product Name</th>
+					<td style="padding-left:50px"><input type="text" readonly th:field="*{product.name}"></td>
+				</tr>
+				<tr>
+					<th>Unit Price</th>
+					<td style="padding-left:50px"><input type="text" readonly th:field="*{product.originalPrice}"></td>
+				</tr>
+				<tr>
+					<th>Supplier</th>
+					<td style="padding-left:50px"><input type="text" readonly th:field="*{product.supplier.companyName}"></td>
+				</tr>
+				<tr>
+					<th>MOQ</th>
+					<td style="padding-left:50px"><input type="text" readonly th:field="*{product.MOQ}"></td>
+				</tr>
+				<tr>
+					<th>Order Quantity</th>
+					<td style="padding-left:50px"><input type="number" readonly th:field="*{orderQty}"></td>
+				</tr>
+				<tr>
+					<th>Date Received</th>
+					<td style="padding-left:50px"><input type="date" readonly th:field="*{dateReceived}"></td>
+				</tr>
+    		</table>
+  		</div>
+  		<div class="column2" style="padding-left:50px">
+  			<table>
+      			<tr>
+        			<th>Damaged Quantity</th>
+        			<td style="padding-left:50px"><input type="number" th:field="*{damagedQty}"></td>
+        			<td style="padding-left:20px"><p class="errors" th:if="${#fields.hasErrors('damagedQty')}" th:errors="*{damagedQty}"></p></td>
+        		</tr>
+        		<tr>
+        			<th>Damage Description:</th>
+        		</tr>
+        		<tr>
+        			<td colspan="2"><textarea name="damageDescription" th:field="*{damagedDescription}">Enter description here..</textarea></td>
+        			<td style="padding-left:20px"><p class="errors" th:if="${#fields.hasErrors('damagedDescription')}" th:errors="*{damagedDescription}"></p></td>
+        		</tr>
+    		</table>
+    		<input type="submit" value="Save" name="saveSEForm">
+			<input type="submit" value="Add to inventory" name="addToInventory">
+  		</div>
+  	</div>
+  	</form>
+  	<p><a th:href="@{/reorders/list}" class="btn btn-default">Back to Reorders</a></p>
+	<div th:replace="fragments/general.html :: footer"></div>
+	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>Reorder Form</title>
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"></header>
+	<div th:replace="fragments/general.html :: menu"></div>
+
+	<h1>Reorder Form</h1>
+	<form action="#" th:object="${reorder}"
+		th:action="@{/reorders/placeorder/{id}(id = ${reorder.id})}" method="post">
+		<table>
+			<tr>
+				<th>Product Name</th>
+				<td style="padding-left:50px"><input type="text" readonly th:field="*{product.name}"></td>
+			</tr>
+			<tr>
+				<th>Unit Price</th>
+				<td style="padding-left:50px"><input type="text" readonly th:field="*{product.originalPrice}"></td>
+			</tr>
+			<tr>
+				<th>Supplier</th>
+				<td style="padding-left:50px"><input type="text" readonly th:field="*{product.supplier.companyName}"></td>
+			</tr>
+			<tr>
+				<th>MOQ</th>
+				<td style="padding-left:50px"><input type="text" readonly th:field="*{product.MOQ}"></td>
+			</tr>
+			<tr>
+				<th>Order Quantity</th>
+				<td style="padding-left:50px"><input type="number" th:field="*{orderQty}"></td>
+				<td style="padding-left:20px"><p th:if="${#fields.hasErrors('orderQty')}" th:errors="*{orderQty}"></p>
+					<p th:text="${belowMOQ}"></p></td>
+			</tr>
+		</table>
+		<button type="submit">Place Order</button>
+	</form>
+	<p><a th:href="@{/reorders/list}">Back to Reorders</a></p>
+	<div th:replace="fragments/general.html :: footer"></div>
+	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+</body>
+</html>

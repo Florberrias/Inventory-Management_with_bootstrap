@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:fragment="header" id="header">
+		<table width="100%" class="center">
+			<tr align="center">
+				<td style="background-color:#003366" width="30%"></td>
+				<td style="color:#ffffff; background-color:#003366" align="center" width="40%">
+					<img th:src="@{/image/inventory.png}" width="100" height="100" />
+					<h3>Team 6 Inventory Management System</h3></td>
+				<td style="background-color:#003366" width="30%"></td>
+			</tr>
+		</table>
+	</div>
+	<div th:fragment="menu" id="menu">		
+	</div>
+	<footer th:fragment="footer">
+	</footer>
+</body>
+</html>

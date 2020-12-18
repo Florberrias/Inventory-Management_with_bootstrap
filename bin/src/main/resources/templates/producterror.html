@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Product Listing</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+
+	<h1>Product Listing</h1>
+	<!-- Add Hyperlink -->
+	<a href="AddUser.html" th:href="@{/supplier/add}">Add Supplier</a>
+
+	<h2>There are other entities connected to master product table in the database.<br>
+	Please delete stock, reorder and consumption related first.</h2>
+	
+	<a href="AddUser.html" th:href="@{/product/list}">Product Page</a>
+
+
+    <br/>
+	<div th:replace="fragments/general.html :: footer"></div>
+	
+</body>
+</html>

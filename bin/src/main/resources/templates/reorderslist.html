@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<title>Reorder Page</title>
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"></header>
+	<div th:replace="fragments/general.html :: menu"></div>
+	<h1>Manage Orders</h1>
+	
+	<!-- Generate list of orders needed to be reordered -->
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>ORDER ID</th>
+				<th>SUPPLIER</th>
+				<th>NAME</th>
+				<th>UNIT PRICE</th>
+				<th>STOCK UNITS</th>
+				<th>REORDER QTY</th>
+				<th>MIN ORDER QTY</th>
+				<th>ORDER QTY</th>
+				<th>DAMAGED QTY</th>
+				<th>LAST REORDER DATE</th>
+				<th>ORDER STATUS</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		
+		<tr th:each="reorder: ${rlist}">
+			<td th:text="${reorder.id}">Default</td>
+			<td th:text="${reorder.product.supplier.companyName}">Default</td>
+			<td th:text="${reorder.product.name}">Default</td>
+			<td th:text="${reorder.product.originalPrice}">Default</td>
+			<td th:text="${reorder.stockUnits}">Default</td>
+			<td th:text="${reorder.product.reorderQty}">Default</td>
+			<td th:text="${reorder.product.MOQ}">Default</td>
+			<td th:text="${reorder.orderQty}">Default</td>
+			<td th:if="${reorder.damagedQty != 0}" th:text="${reorder.damagedQty}">Default</td>
+			<td th:if="${reorder.damagedQty == 0}"> </td>
+			<td th:text="${reorder.date}">Default</td>
+			<td th:text="${reorder.status}">Default</td>
+			<td>
+				<div th:if="${reorder.status.name() == 'PENDING_ORDER'}">
+					<button th:onclick="|window.location.href='@{/reorders/viewform/{id}(id = ${reorder.id})}'|">Reorder Form</button>
+				</div>
+				<div th:unless="${reorder.status.name() == 'PENDING_ORDER'}">
+					<button th:onclick="|window.location.href='@{/reorders/vieworder/{id}(id = ${reorder.id})}'|">View Order</button>
+				</div>
+			</td>
+			<td>
+				<div th:if="${reorder.status.name() == 'PENDING_ORDER'}"></div>
+				<div th:if="${reorder.status.name() == 'REORDERED'}"></div>
+				<div th:if="${reorder.status.name() == 'RECEIVED'}">
+					<button th:onclick="|window.location.href='@{/reorders/editseform/{id}(id = ${reorder.id})}'|">Edit SE Form</button>
+				</div>
+				<div th:if="${reorder.status.name() == 'ADDED_TO_INVENTORY'}">
+					<button th:onclick="|window.location.href='@{/reorders/viewseform/{id}(id = ${reorder.id})}'|">View SE Form</button>
+				</div>
+			</td>
+		</tr>			
+	</table>
+	<div th:replace="fragments/general.html :: footer"></div>
+	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+</body>
+</html>			

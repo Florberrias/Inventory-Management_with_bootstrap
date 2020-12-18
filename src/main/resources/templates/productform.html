@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<title>Product Form</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" media="all" type="text/css" th:href="@{/css/style.css}" />
+	<style>
+fieldset {
+  background-color: #eeeeee;
+}
+
+</style>
+</head>
+<body>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+		<table width="100%" class="center">
+			<tr align="center">
+				<td width="30%"></td>
+				<td align="center" width="40%"><h1>Product Form</h1></td>
+				<td  width="30%"></td>
+			</tr>
+		</table>
+	<form action="#" th:object="${product}" th:action="@{/product/save}" method="post">
+		
+		<fieldset>
+		<p th:text="${duplicate}"></p>
+			<input type="hidden" th:field="*{productId}">
+		</fieldset>
+		<fieldset>
+		     Name
+			<input type="text" th:field="*{name}">
+			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+		</fieldset>
+		<fieldset>
+			Description
+			<input type="text" th:field="*{description}">
+			<p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+		</fieldset>
+		<fieldset>
+			Type
+			<input type="text" th:field="*{type}">
+			<p th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p>
+		</fieldset>
+		<fieldset>
+			Category
+			<input type="text" th:field="*{category}">
+			<p th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></p>
+		</fieldset>
+		<fieldset>
+			Sub-Category
+			<input type="text" th:field="*{subCategory}">
+			<p th:if="${#fields.hasErrors('subCategory')}" th:errors="*{subCategory}"></p>
+		</fieldset>
+		<fieldset>
+			Original Price
+			<input type="number" step="0.0001" th:field="*{originalPrice}">
+			<p th:if="${#fields.hasErrors('originalPrice')}" th:errors="*{originalPrice}"th:placeholder="1.2"></p>
+		</fieldset>
+		<fieldset>
+			Wholesale Price
+			<input type="number" step="0.0001"  th:field="*{wholesalePrice}">
+			<p th:if="${#fields.hasErrors('wholesalePrice')}" th:errors="*{wholesalePrice}" th:placeholder="1.2"></p>
+		</fieldset>
+		<fieldset>
+			Retail Price
+			<input type="number" step="0.0001"  th:field="*{retailPrice}">
+			<p th:if="${#fields.hasErrors('retailPrice')}" th:errors="*{retailPrice}"th:placeholder="1.2"></p>
+		</fieldset>
+		<fieldset>
+			Partner Price
+			<input type="number" step="0.0001" th:field="*{partnerPrice}">
+			<p th:if="${#fields.hasErrors('partnerPrice')}" th:errors="*{partnerPrice}" th:placeholder="1.2"></p>
+		</fieldset>
+		<fieldset>
+			MOQ
+			<input type="number" th:field="*{MOQ}">
+			<p th:if="${#fields.hasErrors('MOQ')}" th:errors="*{MOQ}"></p>
+		</fieldset>
+		<fieldset>
+			Reorder Qty
+			<input type="number" th:field="*{reorderQty}">
+			<p th:if="${#fields.hasErrors('reorderQty')}" th:errors="*{reorderQty}"></p>
+		</fieldset>
+    <fieldset>
+			Select Supplier 
+	 	<select th:field="*{supplierId}">
+    <option th:each="s : ${suppliers}" th:value="${s.supplierId}" th:text="${s.companyName}" ></option>
+    </select>
+		</fieldset>
+		<fieldset>
+			<input type="submit" value="Save" /> &nbsp; &nbsp; <input
+				type="reset" value="Reset" />
+		</fieldset>
+
+	</form>
+	<br />
+	<div th:replace="fragments/general.html :: footer"></div>
+	<a href="AddUser.html" class="btn btn-warning" th:href="@{/product/list}">Product Page</a>
+	<br/>
+	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Logged Out</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<div th:replace="fragments/general.html :: menu"></div>
+	<h2 align="center">LOGOUT SUCCESSFUL</h2>
+	<div align="center">
+		<input type="button" value="Back to Login Page"
+					onclick="window.location.href='/user/login'; return false"
+					class="button" /> </div>
+	<div th:replace="fragments/general.html :: footer"></div>
+</body>
+</html>

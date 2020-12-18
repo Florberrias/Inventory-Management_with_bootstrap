@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>WELCOME</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+	<h1>WELCOME PAGE</h1>
+	<div align="center">
+		<input type="button" value="Please Click to Login "
+					onclick="window.location.href='/user/login'; return false"
+					class="button" /> </div>
+	<div align="center">
+		<img alt="" th:src="@{/image/image.png}" />
+	</div>
+	<div th:replace="fragments/general.html :: footer"></div>
+</body>
+</html>

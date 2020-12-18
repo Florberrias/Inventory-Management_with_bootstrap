@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Suppliers Listing</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+
+	<h1>Supplier Listing</h1>
+	<!-- Add Hyperlink -->
+	<a href="AddUser.html" th:href="@{/supplier/add}">Add Supplier</a>
+
+	<h2 th:if="${not #lists.isEmpty(suppliers)}">Supplier Listing</h2>
+	<table th:if="${not #lists.isEmpty(suppliers)}" >
+		<tr >
+		<th>Supplier ID</th>
+		<th>Brand Name</th>
+		<th>Company Name</th>
+		<th>Contact Person</th>
+		<th>Address</th>
+		<th>Email Address</th>
+		</tr>
+
+		<tr th:each="supplier:${suppliers}" class="table-row">
+			<td th:text=${supplier.supplierId}>Id</td>
+			<td th:text=${supplier.brandName}>Brand Name</td>
+			<td th:text=${supplier.companyName}>Company Name</td>
+			<td th:text=${supplier.contactPerson}>Contact Person</td>
+			<td th:text=${supplier.contactNumber}>Contact Number</td>
+			<td th:text=${supplier.address}>Address</td>
+			<td th:text=${supplier.emailAddress}>Email Address</td>
+			<td><a href="EditSupplier.html"
+				th:href="@{/supplier/edit/}+${supplier.supplierId}">Edit</a></td>
+			<td><a href="DeleteSupplier.html"
+				th:href="@{/supplier/delete/}+${supplier.supplierId}">Delete</a></td>
+		</tr>
+	</table>
+    <br/>
+	<div th:replace="fragments/general.html :: footer"></div>
+	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+</body>
+</html>

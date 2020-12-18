@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>Reorders List</title>
+<body>
+	<header th:insert="fragments/general.html :: header"></header>
+	<div th:replace="fragments/general.html :: menu"></div>
+	<h1>Inventory Reorder Report</h1>
+	<table th:object="${reorder}">
+		<tr>
+			<th>Part.No.</th>
+			<th>Unit.Price</th>
+			<th>Qty</th>
+			<th>Reorder.Qty</th>
+			<th>Min.Order.Qty</th>
+			<th>Ord.Qty.</th>
+			<th>Price</th>
+		</tr>
+		<tr>
+			<td><input type="text" readonly th:field="*{product.id}"></td>
+			<td><input type="text" readonly th:field="*{product.originalPrice}"></td>
+			<td><input type="text" readonly th:field="*{product.id}"></td>
+			<td><input type="text" readonly th:field="*{product.id}"></td>
+			<td><input type="text" readonly th:field="*{product.id}"></td>
+			<td><input type="text" readonly th:field="*{product.id}"></td>
+			<td><input type="text" readonly th:field="*{product.id}"></td>
+		</tr>
+	</table>
+	<p><a th:href="@{/reorders/list}">Back to Reorders</a></p>
+	<div th:replace="fragments/general.html :: footer"></div>
+	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+</body>
+</html>

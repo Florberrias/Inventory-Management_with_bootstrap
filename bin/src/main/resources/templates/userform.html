@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>User Form</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/style.css" th:href="@{/css/style.css}" />
+<style>
+fieldset {
+  background-color: #eeeeee;
+}
+
+</style>	
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+
+	<h1>User Form</h1>
+	<form action="#" th:object="${user}" th:action="@{/user/save}"
+		method="post">
+			<input type="hidden" th:field="*{userId}">
+		<fieldset>
+			User Name: <input type="text" th:field="*{userName}">
+			<p class="error-list" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
+			<p th:text="${duplicate}"></p>
+		</fieldset>
+		<fieldset>
+			Password: <input type="password" th:field="*{password}">
+			<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+		</fieldset>
+			<fieldset>
+			Email: <input type="text" th:field="*{email}">
+			<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+		</fieldset>
+		<fieldset>
+		   Role Type:
+		<select name="roleType">
+    		<option th:each="roleOpt : ${T(sg.edu.iss.model.RoleType).values()}" 
+       		 th:value="${roleOpt}" th:text="${roleOpt}"></option>
+        </select>
+        </fieldset>
+
+		<fieldset>
+			<input type="submit" value="Save" /> &nbsp; &nbsp; <input
+				type="reset" value="Reset" />
+		</fieldset>
+
+	</form>
+	<br />
+	<div th:replace="fragments/general.html :: footer"></div>
+	<a href="AddUser.html" th:href="@{/user/list}">Product Page</a>
+	<br/>
+	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+</body>
+</html>

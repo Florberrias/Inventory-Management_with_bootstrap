@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<title>Product Listing</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" media="all" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+		<table width="100%" class="center">
+			<tr align="center">
+				<td width="30%"></td>
+				<td align="center" width="40%"><h1>Product Listing</h1></td>
+				<td  width="30%"></td>
+			</tr>
+		</table>
+	<!-- Add Hyperlink -->
+
+	<h2>Product has been moved to archive due to existing transactions and reorders records.</h2>
+
+	<a href="AddUser.html" class="btn btn-warning" th:href="@{/product/list}">Product Page</a>
+
+
+    <br/>
+	<div th:replace="fragments/general.html :: footer"></div>
+	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+
+</body>
+</html> 

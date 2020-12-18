@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles">
+<meta charset="UTF-8" />
+<title>User Form</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" media="all" type="text/css" th:href="@{/css/style.css}" />
+<style>
+fieldset {
+  background-color: #eeeeee;
+}
+
+</style>
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+		<table width="100%" class="center">
+			<tr align="center">
+				<td width="30%"></td>
+				<td align="center" width="40%"><h1>User Form</h1></td>
+				<td  width="30%"></td>
+			</tr>
+		</table>
+	<form action="#" th:object="${user}" th:action="@{/user/save1}"
+		method="post">
+			<input type="hidden" th:field="*{userId}">
+		<fieldset>
+			User Name: <input type="text" th:field="*{userName}">
+			<p class="error-list" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
+			<p th:text="${duplicate}"></p>
+		</fieldset>
+		<fieldset>
+			Password: <input type="password" th:field="*{password}">
+			<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+		</fieldset>
+			<fieldset>
+			Email: <input type="text" th:field="*{email}">
+			<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+		</fieldset>
+		<fieldset>
+		   Role Type:
+		<select name="roleType">
+    		<option th:each="roleOpt : ${T(sg.edu.iss.model.RoleType).values()}" 
+       		 th:value="${roleOpt}" th:text="${roleOpt}"></option>
+        </select>
+        </fieldset>
+
+		<fieldset>
+			<input type="submit" value="Save" /> &nbsp; &nbsp; <input
+				type="reset" value="Reset" />
+		</fieldset>
+
+	</form>
+	<br />
+	<div th:replace="fragments/general.html :: footer"></div>
+	<a href="AddUser.html" class="btn btn-warning" th:href="@{/user/list}">Product Page</a>
+	<br/>
+	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+</body>
+</html>

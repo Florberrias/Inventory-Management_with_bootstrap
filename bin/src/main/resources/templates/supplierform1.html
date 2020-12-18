@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Supplier Form</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/style.css" th:href="@{/css/style.css}" />
+<style>
+fieldset {
+  background-color: #eeeeee;
+}
+
+</style>
+</head>
+<body>
+	<header th:insert="fragments/general.html :: header"> </header>
+	<div th:replace="fragments/general.html :: menu"></div>
+
+	<h1>Supplier Form</h1>
+	<form action="#" th:object="${supplier}" th:action="@{/supplier/save1}"
+		method="post">
+		<fieldset>
+		<p th:text="${duplicate}"></p>
+			<input type="hidden" th:field="*{supplierId}">
+		</fieldset>
+		
+		<fieldset>
+			Brand Name<input type="text" th:field="*{brandName}">
+			<p th:if="${#fields.hasErrors('brandName')}" th:errors="*{brandName}"></p>
+		</fieldset>
+		<fieldset>
+			Company Name<input type="text" th:field="*{companyName}">
+			<p th:if="${#fields.hasErrors('companyName')}" th:errors="*{companyName}"></p>
+		</fieldset>
+		<fieldset>
+			Contact Person<input type="text" th:field="*{contactPerson}">
+			<p th:if="${#fields.hasErrors('contactPerson')}" th:errors="*{contactPerson}"></p>
+		</fieldset>
+		<fieldset>
+			Contact Number<input type="text" th:field="*{contactNumber}" th:placeholder="12345678">
+			<p th:if="${#fields.hasErrors('contactNumber')}" th:errors="*{contactNumber}"></p>
+		</fieldset>
+		<fieldset>
+			Address<input type="text" th:field="*{address}">
+			<p th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+		</fieldset>
+		<fieldset>
+			Email Address<input type="text" th:field="*{emailAddress}">
+			<p th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}"></p>
+		</fieldset>
+		<fieldset>
+			<input type="submit" value="Save" /> &nbsp; &nbsp; <input type="reset" value="Reset" />
+		</fieldset>
+
+	</form>
+	<br />
+	<div th:replace="fragments/general.html :: footer"></div>
+	<a href="AddUser.html" th:href="@{/supplier/list}">Supplier Page</a>
+	<br/>
+	<span th:if="${session.session == 'admin'}"><a href="Home" th:href="@{/user/home/admin}">Home</a></span>
+	<span th:if="${session.session == 'mechanic'}"><a href="Home" th:href="@{/user/home/mechanic}">Home</a></span>
+</body>
+</html>
